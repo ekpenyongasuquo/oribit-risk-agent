@@ -1,0 +1,5 @@
+sgp4
+numpy
+httpx
+openai
+python-dotenv
