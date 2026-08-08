@@ -59,6 +59,29 @@ combined) and all 13 protected station-class assets found 0 CRITICAL and 0 WATCH
 in the live window — a legitimate "all clear" result, consistent with the fact that active
 stations actively maneuver to avoid exactly this kind of close approach.
 
+## Real-World Impact: Why This Matters Beyond a Demo
+Official conjunction warnings — Conjunction Data Messages (CDMs) from the US Space Force's
+18th/19th Space Defense Squadrons — are explicitly **permission-controlled**. Space-Track.org's
+own documentation states CDM access requires the requester to be a registered satellite
+owner/operator with an active object in the catalog, obtained via a formal Orbital Data
+Request (ODR). A university cubesat team between launches, a researcher studying a historical
+collision, a student building space-safety tooling, or an emerging space program without a
+currently-flying asset — none of them qualify for CDM access, even though the underlying
+tracking data (TLEs/OMM elements) is public.
+
+| | Official CDMs (Space-Track) | Commercial (LeoLabs, Slingshot) | This project |
+|---|---|---|---|
+| Data source | US SSN (classified sensor network) | Proprietary radar/optical network | Public CelesTrak GP data |
+| Access requirement | Registered satellite owner/operator only | Paid subscription | None — public data, own compute |
+| Cost | Free, but gatekept | Commercial pricing | Free |
+| Who can use it | Active satellite operators | Paying customers | Anyone — students, researchers, small teams |
+
+This project doesn't compete with official CDMs on precision or sensor fidelity — it fills the
+access gap for anyone who wants a first-pass risk read on a public object of interest without
+needing operator credentials. `risk_engine/watch_object.py` (below) demonstrates this directly:
+point it at any NORAD catalog ID and it runs the same validated conjunction-assessment pipeline
+against it, no registration required.
+
 ## Setup
 ```bash
 pip install -r requirements.txt
